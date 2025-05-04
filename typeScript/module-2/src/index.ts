@@ -136,87 +136,127 @@ interface DeveloperType<T> {
 
 
 
-const poorDeveloper: DeveloperType<{ name: string, price: number }> = {
-    name: "ishan",
-    computter: {
-        price: 30000,
-        relaseDate: "2024",
-        version: "core i5",
-        brand: "asus",
-    },
-    watch: {
-        name: "y watch",
-        price: 1500,
-        brand: "casio",
-    },
-    bikes: {
-        name: "puchare",
-        price: 150000
-    },
-};
+{
+    const poorDeveloper: DeveloperType<{ name: string, price: number }> = {
+        name: "ishan",
+        computter: {
+            price: 30000,
+            relaseDate: "2024",
+            version: "core i5",
+            brand: "asus",
+        },
+        watch: {
+            name: "y watch",
+            price: 1500,
+            brand: "casio",
+        },
+        bikes: {
+            name: "puchare",
+            price: 150000
+        },
+    };
 
 
-type BykeType = {
-    name: string, price: number, model: string
+    type BykeType = {
+        name: string, price: number, model: string
+    }
+
+
+    const richDeveloper: DeveloperType<BykeType> = {
+        name: "Ashik",
+        computter: {
+            price: 10000,
+            relaseDate: "2024",
+            version: "core i5",
+            brand: "asus",
+        },
+        watch: {
+            name: "y watch",
+            price: 10000,
+            brand: "casio",
+        },
+        bikes: {
+            name: "puchare",
+            price: 1500000,
+            model: "appache12V"
+        },
+    };
+
+
+    // generic with function 
+
+
+    const createArray = <T>(params: T): T[] => {
+        return [params]
+    }
+
+
+    console.log(createArray<string>("bangladesh"))
+
+
+    const createArrayTwo = <T>(params: T): T[] => {
+        return [params]
+    };
+
+    type userData = {
+        name: string;
+        id: number
+    }
+
+
+    console.log(createArrayTwo<userData>({ name: "abc", id: 22 }))
+
+    const courseWithStudent = <T>(params: T) => {
+        const course = `Next level with nextJs`
+        return ({
+            ...params,
+            course
+        }
+        )
+    };
+    interface courseInterface {
+        name: string;
+        email: string,
+        id: number
+    }
+
+    console.log(courseWithStudent<courseInterface>({ name: "mr.x", email: "mr.x@gmail.com", id: 1 }));
+
 }
 
 
-const richDeveloper: DeveloperType<BykeType> = {
-    name: "Ashik",
-    computter: {
-        price: 10000,
-        relaseDate: "2024",
-        version: "core i5",
-        brand: "asus",
-    },
-    watch: {
-        name: "y watch",
-        price: 10000,
-        brand: "casio",
-    },
-    bikes: {
-        name: "puchare",
-        price: 1500000,
-        model: "appache12V"
-    },
-};
+{
+    // generic with constaint
+    type StudentCourseType = {
+        name: string,
+        id: number,
+        email: string
+    }
+    const courseWithStuden = <T extends StudentCourseType>(params: T) => {
+        const courseName = "Next level NextJs "
+        return {
+            ...params,
+            courseName
+        }
+    };
 
 
-// generic with function 
 
 
-const createArray = <T>(params: T): T[] => {
-    return [params]
+    console.log(courseWithStuden<StudentCourseType>({ name: "abc", id: 1, email: "abc@gmail.com" }))
+    console.log(courseWithStuden<StudentCourseType>({ name: "abc", id: 1, email: "abc@gmail.com"}))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
-
-
-console.log(createArray<string>("bangladesh"))
-
-
-const createArrayTwo = <T>(params: T): T[] => {
-    return [params]
-};
-
-type userData = {
-    name: string;
-    id: number
-}
-
-
-console.log(createArrayTwo<userData>({ name: "abc", id: 22 }))
-
-const courseWithStudent = <T>(params: T)=> {
-    const course = `Next level with nextJs`
-    return ({
-        ...params,
-        course}
-    )
-};
-interface courseInterface {
-    name : string;
-    email : string,
-    id : number
-}
-
-console.log(courseWithStudent<courseInterface>({name:"mr.x",email:"mr.x@gmail.com",id:1}));
-
