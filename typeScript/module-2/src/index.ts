@@ -135,7 +135,8 @@ interface DeveloperType<T> {
 }
 
 
-const poorDeveloper: DeveloperType<{ name: string,price:number }> = {
+
+const poorDeveloper: DeveloperType<{ name: string, price: number }> = {
     name: "ishan",
     computter: {
         price: 30000,
@@ -150,13 +151,13 @@ const poorDeveloper: DeveloperType<{ name: string,price:number }> = {
     },
     bikes: {
         name: "puchare",
-        price : 150000
+        price: 150000
     },
 };
 
 
 type BykeType = {
-    name: string,price:number,model:string 
+    name: string, price: number, model: string
 }
 
 
@@ -175,7 +176,47 @@ const richDeveloper: DeveloperType<BykeType> = {
     },
     bikes: {
         name: "puchare",
-        price : 1500000,
-        model : "appache12V"
+        price: 1500000,
+        model: "appache12V"
     },
 };
+
+
+// generic with function 
+
+
+const createArray = <T>(params: T): T[] => {
+    return [params]
+}
+
+
+console.log(createArray<string>("bangladesh"))
+
+
+const createArrayTwo = <T>(params: T): T[] => {
+    return [params]
+};
+
+type userData = {
+    name: string;
+    id: number
+}
+
+
+console.log(createArrayTwo<userData>({ name: "abc", id: 22 }))
+
+const courseWithStudent = <T>(params: T)=> {
+    const course = `Next level with nextJs`
+    return ({
+        ...params,
+        course}
+    )
+};
+interface courseInterface {
+    name : string;
+    email : string,
+    id : number
+}
+
+console.log(courseWithStudent<courseInterface>({name:"mr.x",email:"mr.x@gmail.com",id:1}));
+
