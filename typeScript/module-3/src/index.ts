@@ -41,26 +41,26 @@
     }
 
     class Student extends Parent {
-        
+
 
         constructor(name: string, age: number, address: string) {
-            super(name,age,address)
+            super(name, age, address)
         }
 
     }
     const studentData = new Student("abul", 22, "ugenda");
     studentData.getSleep(6);
 
-    class Teacher extends Parent  {
-        
+    class Teacher extends Parent {
+
         designation: string
 
         constructor(name: string, age: number, address: string, designation: string) {
-            super(name,age,address)
+            super(name, age, address)
             this.designation = designation
         }
 
-    
+
         getClass(numberOfClass: number) {
             console.log(`${this.name} will take class ${numberOfClass} in a day `)
         }
@@ -72,3 +72,50 @@
 
 
 }
+
+{
+    // type guard of typeof
+
+    type alphaNumeric = number | string
+
+    const addFun = (param1: alphaNumeric, param2: alphaNumeric): alphaNumeric => {
+        if (typeof param1 === "number" && typeof param2 === "number") {
+            return param1 + param2
+        } else {
+            return param1.toString() + param2.toString()
+        }
+    };
+
+    console.log(addFun(23, 23))
+    console.log(addFun(23, "23"))
+
+}
+
+{
+    // type in guard 
+
+    type User = {
+        name: string
+    };
+
+    type Admin = {
+        name: string;
+        role: string
+    };
+
+    const adminUserFun = (param: User | Admin) => {
+        console.log(`${param.name}`);
+        if ("role" in param) {
+            console.log(` ${param.name} ${param.role}`)
+        }else{
+            console.log(`${param.name}`)
+        }
+    } 
+
+
+
+}
+
+
+// instanceof type guard 
+
