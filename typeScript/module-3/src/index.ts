@@ -10,12 +10,12 @@
             // this.age = age
         }
         studentFun() {
-            console.log(` ${this.name} says how are you `)
+            // console.log(` ${this.name} says how are you `)
         }
     }
     const studentData = new Student("ishan", 21, "21");
     studentData.studentFun()
-    console.log(studentData)
+    // console.log(studentData)
     studentData.age
     studentData.role
     studentData.age
@@ -36,7 +36,7 @@
         }
 
         getSleep(numOfHour: number) {
-            console.log(`${this.name} will sleep ${numOfHour} hours `)
+            // console.log(`${this.name} will sleep ${numOfHour} hours `)
         }
     }
 
@@ -62,7 +62,7 @@
 
 
         getClass(numberOfClass: number) {
-            console.log(`${this.name} will take class ${numberOfClass} in a day `)
+            // console.log(`${this.name} will take class ${numberOfClass} in a day `)
         }
 
     }
@@ -86,8 +86,8 @@
         }
     };
 
-    console.log(addFun(23, 23))
-    console.log(addFun(23, "23"))
+    // console.log(addFun(23, 23))
+    // console.log(addFun(23, "23"))
 
 }
 
@@ -104,11 +104,11 @@
     };
 
     const adminUserFun = (param: User | Admin) => {
-        console.log(`${param.name}`);
+        // console.log(`${param.name}`);
         if ("role" in param) {
-            console.log(` ${param.name} ${param.role}`)
+            // console.log(` ${param.name} ${param.role}`)
         } else {
-            console.log(`${param.name}`)
+            // console.log(`${param.name}`)
         }
     }
 
@@ -130,7 +130,7 @@
         }
 
         makeSound() {
-            console.log("I am making sound")
+            // console.log("I am making sound")
         }
     }
 
@@ -140,7 +140,7 @@
             super(name, species)
         }
         makeBark() {
-            console.log(`I am make bark`)
+            // console.log(`I am make bark`)
         }
     }
 
@@ -150,7 +150,7 @@
             super(name, species)
         }
         makMew() {
-            console.log(` I am mewing`)
+            // console.log(` I am mewing`)
         }
     }
 
@@ -175,7 +175,7 @@
     const dog = new Dog("dog", "dog");
     const cat = new Cat("cat", "catting");
 
-    console.log(getAnimal(cat))
+    // console.log(getAnimal(cat))
 
 
 }
@@ -191,27 +191,49 @@
             this.name = name;
             this.balance = balance
         }
-        addBalance (amount:number){
-            this.balance = this.balance+amount
+        addBalance(amount: number) {
+            this.balance = this.balance + amount
         }
-        getBalance (){
+        getBalance() {
             return this.balance
         }
     }
 
-    const goribManusarAccount = new bankAccount(111,"gorib",50);
+    const goribManusarAccount = new bankAccount(111, "gorib", 50);
     goribManusarAccount.addBalance(390)
-    console.log(goribManusarAccount)
+    // console.log(goribManusarAccount)
 
-    class studentBankAccount extends bankAccount{
-        constructor(id:number,name:string,balance:number){
-            super(id,name,balance)
+    class studentBankAccount extends bankAccount {
+        constructor(id: number, name: string, balance: number) {
+            super(id, name, balance)
         }
-        studentAdd (amount:number){
-            console.log(`${this.balance}`)
-            this.balance = this.balance+amount
+        studentAdd(amount: number) {
+            // console.log(`${this.balance}`)
+            this.balance = this.balance + amount
         }
-    
+
     }
 
+}
+{
+    class bankAccount {
+        public id: number;
+        public name: string;
+        protected balance: number
+        constructor(id: number, name: string, balance: number) {
+            this.id = id;
+            this.name = name;
+            this.balance = balance
+        }
+        set addBalance(amount: number) {
+            this.balance = this.balance + amount
+        }
+        get getBalance (){
+            return this.balance
+        }
+    }
+    const goribManusarAccount = new bankAccount(111,"ishan",300);
+    goribManusarAccount.addBalance = 300;
+    console.log(goribManusarAccount);
+   console.log( goribManusarAccount.getBalance);
 }
