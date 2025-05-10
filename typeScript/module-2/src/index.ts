@@ -1,5 +1,4 @@
-import { watch } from "fs";
-import { version } from "os";
+
 
 {
 
@@ -240,11 +239,33 @@ interface DeveloperType<T> {
         }
     };
 
-
-
-
     console.log(courseWithStuden<StudentCourseType>({ name: "abc", id: 1, email: "abc@gmail.com" }))
-    console.log(courseWithStuden<StudentCourseType>({ name: "abc", id: 1, email: "abc@gmail.com"}))
+    console.log(courseWithStuden<StudentCourseType>({ name: "abc", id: 1, email: "abc@gmail.com" }))
+
+}
+
+
+{
+    // Constraint useing key of 
+
+    type Owner = "bike" | "car" | "ship";
+
+    type Vehicle = {
+        bike: string;
+        car: string;
+        ship: string;
+    };
+
+    type Owner2 = keyof Vehicle;
+
+    const poor: Owner2 = "bike";
+    const rich: Owner2 = "ship";
+
+    const userList = <X extends Vehicle, Y extends keyof X>(obj: X, value: Y) => {
+        return obj[value];
+    };
+
+    console.log(userList({ bike: "Yamaha", car: "Tesla", ship: "Titanic" }, "ship"));
 
 
 
@@ -252,11 +273,56 @@ interface DeveloperType<T> {
 
 
 
+}
+
+{
+    type CourseType = {
+        courseName: string,
+        topic: string,
+        price: number
+    }
+    const courseList = <X extends CourseType, Y extends keyof X>(obj: X, value: Y) => {
+        return obj[value]
+    };
+    console.log(courseList({ courseName: "next level", topic: "advance", price: 22222 }, "topic"))
+}
+
+{
+    const promiseFun = ():Promise<string>=>{
+        return new Promise((resolve,reject)=>{
+            let data : string = `fdasdsfsa`;
+            if(data){
+                resolve(data)
+            }else{
+                reject("something went wrong");
+            }
+        })
+    };
+
+    const myFun = async():Promise<string>=>{
+        const data : string = await promiseFun();
+        console.log(data)
+        return data;
+    }
+    myFun()
+}
 
 
-
-
-
-
-
+{
+    const promiseFun2 = ():Promise<boolean>=>{
+        return new Promise((resolve,reject)=>{
+            let data : boolean = true;
+            if(data){
+                resolve(data)
+            }else{
+                reject(`something went wrong`)
+            }
+        })
+    }
+    const myFunTwo = async():Promise<boolean>=>{
+        let data : boolean  = await promiseFun2();
+        console.log(data);
+        return data;
+    };
+    myFunTwo()
 }
