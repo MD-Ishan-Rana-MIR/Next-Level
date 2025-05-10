@@ -252,18 +252,84 @@
             return counter.count = counter.count - 1
         }
     }
-    const instanc1 = new counter();
-    console.log(counter.increment())
-    console.log(counter.increment())
-    console.log(counter.increment())
-    const instanc2 = new counter();
-    console.log(counter.increment())
-    console.log(counter.increment())
-    console.log(counter.increment())
+    // const instanc1 = new counter();
+    // console.log(counter.increment())
+    // console.log(counter.increment())
+    // console.log(counter.increment())
+    // const instanc2 = new counter();
+    // console.log(counter.increment())
+    // console.log(counter.increment())
+    // console.log(counter.increment())
 
 
 }
 
 {
-    
+    class Person {
+        getSleep() {
+            return `The person is sleeping 8 hours`;
+        }
+    }
+    class Student extends Person {
+        getSleep() {
+            return `Student sleep is 7 hours`;
+        }
+    }
+    class Developer extends Person {
+        getSleep(): string {
+            return `Developer is sleeping 6 hours`;
+        }
+    }
+
+    const sleep = (param: Person) => {
+        return param.getSleep();
+    };
+
+    console.log(sleep(new Student()));
+    console.log(sleep(new Person()));
+    console.log(sleep(new Developer()));
+
+
+    class Shape {
+        getArea(): number {
+            return 0;
+        }
+    }
+
+    class Circle extends Shape {
+        radious: number
+        constructor(radious: number) {
+            super()
+            this.radious = radious
+        }
+        getArea(): number {
+            return Math.PI * this.radious * this.radious;
+        }
+    }
+
+    class Rectangle extends Shape {
+        width: number;
+        height: number;
+        constructor(width: number, height: number) {
+            super()
+            this.width = width;
+            this.height = height
+        }
+        getArea(): number {
+            return this.width * this.height
+        }
+    }
+
+    const calculation = (param:Shape)=>{
+        return param.getArea()
+    };
+
+
+    const instanc1 = new Circle(20);
+    const instanc2 = new Rectangle(10,20);
+    console.log(calculation(instanc1))
+    console.log(calculation(instanc2))
+
+
+
 }
