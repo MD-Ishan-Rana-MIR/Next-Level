@@ -107,15 +107,111 @@
         console.log(`${param.name}`);
         if ("role" in param) {
             console.log(` ${param.name} ${param.role}`)
-        }else{
+        } else {
             console.log(`${param.name}`)
         }
-    } 
+    }
 
 
 
 }
 
 
-// instanceof type guard 
 
+{
+    // instanceof type guard 
+
+    class Animal {
+        name: string;
+        species: string
+        constructor(name: string, species: string) {
+            this.name = name;
+            this.species = species
+        }
+
+        makeSound() {
+            console.log("I am making sound")
+        }
+    }
+
+
+    class Dog extends Animal {
+        constructor(name: string, species: string) {
+            super(name, species)
+        }
+        makeBark() {
+            console.log(`I am make bark`)
+        }
+    }
+
+
+    class Cat extends Animal {
+        constructor(name: string, species: string) {
+            super(name, species)
+        }
+        makMew() {
+            console.log(` I am mewing`)
+        }
+    }
+
+    const isDog = (animal: Animal): animal is Dog => {
+        return animal instanceof Dog
+    }
+
+    const isCat = (animal: Animal): animal is Cat => {
+        return animal instanceof Cat
+    }
+
+    const getAnimal = (animal: Animal) => {
+        if (isDog(animal)) {
+            animal.makeBark()
+        } else if (isCat(animal)) {
+            animal.makMew()
+        } else {
+            animal.makeSound()
+        }
+    }
+
+    const dog = new Dog("dog", "dog");
+    const cat = new Cat("cat", "catting");
+
+    console.log(getAnimal(cat))
+
+
+}
+{
+    // access modifiar 
+
+    class bankAccount {
+        readonly id: number;
+        name: string;
+        protected balance: number;
+        constructor(id: number, name: string, balance: number) {
+            this.id = id
+            this.name = name;
+            this.balance = balance
+        }
+        addBalance (amount:number){
+            this.balance = this.balance+amount
+        }
+        getBalance (){
+            return this.balance
+        }
+    }
+
+    const goribManusarAccount = new bankAccount(111,"gorib",50);
+    goribManusarAccount.addBalance(390)
+    console.log(goribManusarAccount)
+
+    class studentBankAccount extends bankAccount{
+        constructor(id:number,name:string,balance:number){
+            super(id,name,balance)
+        }
+        studentAdd (amount:number){
+            console.log(`${this.balance}`)
+            this.balance = this.balance+amount
+        }
+    
+    }
+
+}
