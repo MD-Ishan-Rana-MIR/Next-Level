@@ -215,6 +215,7 @@
     }
 
 }
+
 {
     class bankAccount {
         public id: number;
@@ -228,12 +229,41 @@
         set addBalance(amount: number) {
             this.balance = this.balance + amount
         }
-        get getBalance (){
+        get getBalance() {
             return this.balance
         }
     }
-    const goribManusarAccount = new bankAccount(111,"ishan",300);
+    const goribManusarAccount = new bankAccount(111, "ishan", 300);
     goribManusarAccount.addBalance = 300;
     console.log(goribManusarAccount);
-   console.log( goribManusarAccount.getBalance);
+    console.log(goribManusarAccount.getBalance);
+}
+
+
+{
+    // static 
+
+    class counter {
+        static count: number = 0;
+        static increment() {
+            return counter.count = counter.count + 1
+        }
+        static decrement() {
+            return counter.count = counter.count - 1
+        }
+    }
+    const instanc1 = new counter();
+    console.log(counter.increment())
+    console.log(counter.increment())
+    console.log(counter.increment())
+    const instanc2 = new counter();
+    console.log(counter.increment())
+    console.log(counter.increment())
+    console.log(counter.increment())
+
+
+}
+
+{
+    
 }
